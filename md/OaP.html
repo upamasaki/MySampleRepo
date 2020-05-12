@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>OaP.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="object-as-point-summary">Object as point summary</h1>
+<p>黒字：論文
+<font color="Tomato">赤字：コメント</font></p>
+<h2 id="introduction">Introduction</h2>
+<p>Object detection powers many vision tasks like instance segmentation (7,21,32], pose estimation [3, 15, 39), tracking [24, 27), and action recognition [5]. It has down-stream applications in surveillance [57], autonomous driving [53], and visual question answering [1]. Current object detectors represent each object through an axis-aligned bounding box that tightly encompasses the object [18,19,33, 43, 46). They then reduce object detection to image classification of an extensive number of potential object bounding boxes. For each bounding box, the classifier determines if the image content is a specific object or background. Onestage detectors [33, 43] slide a complex arrangement of possible bounding boxes, called anchors, over the image and classify them directly without specifying the box content. Two-stage detectors [18, 19, 46] recompute image features for each potential box, then classify those features. Post-processing, namely non-maxima suppression, then removes duplicated detections for the same instance by computing bounding box IoU. This post-processing is hard to differentiate and train [23], hence most current detectors are not end-to-end trainable. Nonetheless, over the past five years (19), this idea has achieved good empirical success [12,21,25,26,31,35,47,48,56,62,63]. Sliding window based object detectors are however a bit wasteful, as they need to enumerate all possible object locations and dimensions.</p>
+<p>物体検出は，インスタンスのセグメンテーション（7,21,32），ポーズ推定（3,15,39），トラッキング（24,27），行動認識（5）など，多くのビジョンタスクをサポートしています．
+<font color="Tomato">▼物体検知の例</font>
+<img src="https://i.imgur.com/nQ55Cll.jpg" alt=""></p>
+<p>また，監視 [57]，自律運転 [53]，視覚的な質問応答 [1] などの分野でも応用されています．
+現在の物体検出器は，各物体を軸に沿ったバウンディングボックスで表現し，物体を厳密に包んでいます[18,19,33,43,46]
+<font color="Tomato">▼自動運転の例</font>
+<img src="https://i.imgur.com/QBXuA3E.png" alt=""></p>
+<p>そして，物体検出を，膨大な数の潜在的な物体バウンディングボックスの画像分類にまで落とし込みます．各バウンディングボックスについて，分類器は画像の内容が特定の物体か背景かを判断します．</p>
+<p>ワンステージ検出器 [33, 43] は，アンカーと呼ばれる複雑な配置のバウンディングボックスを画像上にスライドさせ，ボックスの内容を指定せずに直接分類します．
+<font color="Tomato">▼1ステージ検出器</font>
+<font color="Tomato">画像特徴量から直で分類</font>
+<img src="https://i.imgur.com/PPUmPqF.jpg" alt=""></p>
+<p>2段階検出器 [18, 19, 46] は，各可能性のあるボックスについて画像特徴を再計算し，それらの特徴を分類する．
+その後，後処理，すなわち非最大化抑制処理が行われ，バウンディングボックスIoUを計算することで，同じインスタンスについて重複した検出を除去する．
+<font color="Tomato">▼2ステージ検出器</font>
+<font color="Tomato">画像特徴量からボックスを推定，次にそのボックスを分類</font>
+<img src="https://i.imgur.com/KdK8tdz.jpg" alt=""></p>
+<p>[12,21,25,26,31,35,47,48,56,62,63]．
+<font color="Tomato">▼非最大化抑制処理前</font>
+![](https://i.imgur.com/SgA2ABw.jpg =x400)</p>
+<p><font color="Tomato">▼非最大化抑制処理後</font>
+<font color="Tomato">上手くやって１つとして検出</font>
+![](https://i.imgur.com/GDCdcoU.jpg =x400)</p>
+<p><font color="Tomato">▼IoU</font>
+<font color="Tomato">IoUとは，Intersection over Unionの略です．
+IoU値とは，画像の重なりの割合を表す値です．</p>
+<p>IoU値が大きいほど，画像が重なっている状態ということになります．
+IoU値が小さいほど，画像が重なっていない状態ということになります．</p>
+<p>例:
+IoU値=0のとき，画像は全く重なっていない状態ということになります．
+IoU値=0.5のとき，画像は半分重なっている状態ということになります．
+IoU値=1.0のとき，画像は完全に重なっている状態ということになります．</font>
+<img src="https://i.imgur.com/qqLtI4O.png" alt=""></p>
+<p>この後処理は，区別して訓練するのが難しいため[23]，現在のほとんどの検出器は，エンドツーエンドで訓練することができません．
+<font color="Tomato">▼エンドツーエンド</font>
+<font color="Tomato">自動運転を例に取ると，非エンドツーエンドのアプローチでは，物体認識，レーン検出，経路プランニング，ステアリング制御など，人間が設定した複数個のサブタスクを解く必要があるところ，エンドツーエンド学習では車載カメラから取得した画像から直接ステアリング操作を学習する</font>
+<img src="https://i.imgur.com/Ri5dyyy.png" alt=""></p>
+<p>それにもかかわらず，過去5年間（19）で，このアイデアは経験的に良い成功を収めている
+しかし，スライディングウィンドウベースの物体検出器は，可能なすべての物体の位置と寸法を列挙する必要があるため，少し無駄が多い．
+<img src="https://i.imgur.com/YwoRmoc.gif" alt=""></p>
+<p>In this paper, we provide a much simpler and more efficient alternative. We represent objects by a single point at their bounding box center (see Figure 2). Other properties, such as object size, dimension, 3D extent, orientation, and pose are then regressed directly from image features at the center location. Object detection is then a standard keypoint estimation problem (3,39,60]. We simply feed the input image to a fully convolutional network [37,40] that generates a heatmap. Peaks in this heatmap correspond to object centers. Image features at each peak predict the objects bounding box height and weight. The model trains using standard dense supervised learning [39,60]. Inference is a single network forward-pass, without non-maximal suppression for post-processing.</p>
+<p>この論文では，よりシンプルで効率的な代替案を提供します．我々は，外接箱の中心にある一点でオブジェクトを表現します（図2を参照）．
+<img src="https://i.imgur.com/r5EG12q.png" alt=""></p>
+<p>次に，物体のサイズ，寸法，3次元の広がり，向き，ポーズなどの他の特性を，中心位置の画像特徴から直接回帰させます．物体検出は，標準的なキーポイント推定問題(3,39,60)になります．我々は単に入力画像を完全畳み込みネットワーク[37,40]に送るだけで，ヒートマップを生成します．このヒートマップのピークは物体の中心に対応しています．各ピークの画像特徴は，物体の境界ボックスの高さと重さを予測します．モデルは，標準的な密な教師付き学習[39,60]を使用して学習します．推論は単一のネットワークフォワードパスであり，後処理のための非最大抑制はありません．
+<font color="Tomato">！！！！後処理のための非最大抑制はありません！！！！</font></p>
+<details><summary>参考サイト</summary><div>
+<p><a href="https://www.slideshare.net/harmonylab/object-as-points">Object as Points slide</a></p>
+<p><a href="https://engineer.dena.com/posts/2019.07/cv-papers-19-keypoint-object-detection/">コンピュータビジョンの最新論文調査 キーポイントによる物体検出編</a></p>
+<p><a href="https://www.slideshare.net/ren4yu/single-shot">最近のSingle Shot系の物体検出のアーキテクチャまとめ</a></p>
+<p><a href="https://qiita.com/mshinoda88/items/9770ee671ea27f2c81a9">物体検出についての歴史まとめ</a></p>
+<p><a href="https://www.dlology.com/blog/recent-advances-in-deep-learning-for-object-detection/">Recent Advances in Deep Learning for Object Detection - Part 1</a></p>
+<p><a href="https://meideru.com/archives/3538">Non-Maximum Suppressionを世界一わかりやすく解説する</a></p>
+<p><a href="https://app.journal.ieice.org/trial/101_9/k101_9_920/index.html">エンドツーエンド深層学習のフロンティア</a></p>
+</div></details>
+
+</body>
+</html>
